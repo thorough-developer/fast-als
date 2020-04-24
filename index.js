@@ -23,7 +23,7 @@ if (AsyncLocalStorage == null) {
       _namespace.set(key, value);
     }
   }
-  als.doRun = ( defaults = {}, callback) => {
+  als.runWith = ( defaults = {}, callback) => {
      _namespace.run(() => {
        for (let [key, value] of Object.entries(defaults)) {
         _namespace.set(key, value);
@@ -37,7 +37,7 @@ if (AsyncLocalStorage == null) {
    super();
   }
 
-  doRun(defaults, callback) {
+  runWith(defaults, callback) {
     this.run(new Map(Object.entries(defaults)), () => {
       callback();
     });
