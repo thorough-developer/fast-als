@@ -1,31 +1,25 @@
 const { AsyncLocalStorage } = require('async_hooks');
 
-class AsyncLocalStorageFacade extends AsyncLocalStorage {
-    constructor() {
-        super();
-    }
+const asyncLocalStorage = new AsyncLocalStorage();
 
-    runWith(defaults, callback) {
-        this.run(new Map(Object.entries(defaults)), () => {
+const als = {
+    runWith: (defaults, callback) => {
+        asyncLocalStorage.run(new Map(Object.entries(defaults)), () => {
             callback();
         });
-    }
-
-    set(key, value) {
-        const store = this.getStore();
+    },
+    set: (key, value) => {
+        const store = asyncLocalStorage.getStore();
 
         if (store != null) {
             store.set(key, value);
         }
-    }
-
-    get(key) {
-        const store = this.getStore();
+    },
+    get: (key, value) => {
+        const store = asyncLocalStorage.getStore();
 
         return store != null ? store.get(key) : undefined;
     }
 }
-
-const als = new AsyncLocalStorageFacade();
 
 module.exports = als;

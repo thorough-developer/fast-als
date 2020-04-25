@@ -1,5 +1,6 @@
 let AsyncLocalStorage = require('async_hooks').AsyncLocalStorage;
-let als;
+
+let fastAls;
 
 if (AsyncLocalStorage == null) {
     als = require('./cls-facade');
@@ -8,4 +9,4 @@ if (AsyncLocalStorage == null) {
     als = require('./als-facade');
 }
 
-module.exports = als;
+module.exports = fastAls;

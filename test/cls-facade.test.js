@@ -26,7 +26,7 @@ const namespace = {
 
 const createNamespace = sandbox.stub().returns(namespace);
 
-const getFastAlsImportWith = (asyncLocalStorage) => {
+const getFastAlsImportWith = () => {
     return proxyquire.load('../cls-facade.js', {
         'cls-hooked': {
             createNamespace
@@ -34,24 +34,13 @@ const getFastAlsImportWith = (asyncLocalStorage) => {
     });
 };
 
-describe('fast-als tests', () => {
-  let getStub;
-  let setStub;
-  let runStub;
-  beforeEach(() => {
-      sandbox.restore();
-      getStub = sandbox.stub(namespace, 'get').callThrough();
-      setStub = sandbox.stub(namespace, 'set').callThrough();
-      runStub = sandbox.stub(namespace, 'run').callThrough();
-  });
-
+describe('cls-facade tests', () => {
   describe('When on Node 12 and lower', () => {
-    const asyncLocalStorage = undefined;
 
     let fastAls;
 
     beforeEach(() => {
-        fastAls = getFastAlsImportWith(asyncLocalStorage);
+        fastAls = getFastAlsImportWith();
     });
     describe('and set is called without running in context', () => {
         beforeEach(() => {
@@ -60,14 +49,6 @@ describe('fast-als tests', () => {
 
         it('then get returns undefined', () => {
             expect(fastAls.get('key')).to.be.undefined;
-        });
-
-        it('then namespace.get is never called', () => {
-            expect(namespace.get).not.to.have.been.called;
-        });
-
-        it('then namespace.set is never called', () => {
-            expect(namespace.set).not.to.have.been.called;
         });
     });
 
