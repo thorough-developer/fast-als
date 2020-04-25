@@ -1,12 +1,11 @@
-let AsyncLocalStorage = require('async_hooks').AsyncLocalStorage;
+const { AsyncLocalStorage } = require('async_hooks');
 
 let fastAls;
 
 if (AsyncLocalStorage == null) {
-    als = require('./cls-facade');
+    fastAls = require('./cls-facade');
 } else {
-    console.log('als facade');
-    als = require('./als-facade');
+    fastAls = require('./als-facade');
 }
 
 module.exports = fastAls;

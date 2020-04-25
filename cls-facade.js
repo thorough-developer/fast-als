@@ -1,4 +1,4 @@
-const createNamespace = require('cls-hooked').createNamespace;
+const { createNamespace } = require('cls-hooked');
 const hyperid = require('hyperid');
 const generator = hyperid();
 const id = generator();
