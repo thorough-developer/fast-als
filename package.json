@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "Asynchronous local storage implementation which provides an agnostic and performant approach no matter your version of node.",
   "main": "index.js",
-  "files": ["index.js", "als-facade.js", "cls-facade.js"],
+  "files": [
+    "index.js",
+    "als-facade.js",
+    "cls-facade.js"
+  ],
   "scripts": {
     "test": "jest",
     "document": "documentation readme index.js --section=API"
@@ -42,6 +46,7 @@
   },
   "dependencies": {
     "cls-hooked": "^4.2.2",
+    "eslint-plugin-jest": "^23.8.2",
     "hyperid": "^2.0.3"
   },
   "jest": {
