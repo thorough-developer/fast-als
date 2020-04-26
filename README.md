@@ -130,20 +130,32 @@ server.listen(8080, function () {
 ### Table of Contents
 
 -   [fastAls](#fastals)
--   [runWith](#runwith)
-    -   [Parameters](#parameters)
-    -   [Examples](#examples)
+    -   [runWith](#runwith)
+        -   [Parameters](#parameters)
+        -   [Examples](#examples)
+    -   [set](#set)
+        -   [Parameters](#parameters-1)
+        -   [Examples](#examples-1)
+    -   [get](#get)
+        -   [Parameters](#parameters-2)
+        -   [Examples](#examples-2)
+-   [fastAls~runWithCallback](#fastalsrunwithcallback)
 
 ## fastAls
 
-## runWith
+Asynchronous Local Storage wrapper that will run regardless of Node version.
 
-### Parameters
+### runWith
+
+The start of creating an asynchronous local storage context. Once this method is called, a new context is created
+where get and set calls will set and return values as expected.
+
+#### Parameters
 
 -   `defaults` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Sets the default values. A convenience so that you don't have to check to see if a value is there and set it to something else.
--   `callback` **[function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** This is the code to be executed first within the new context that is created
+-   `callback` **[fastAls~runWithCallback](#fastalsrunwithcallback)** This is the code to be executed first within the new context that is created
 
-### Examples
+#### Examples
 
 ```javascript
 const fastAls = require('fast-als');
@@ -163,3 +175,86 @@ fastAls.runWith({ user: { id: 'someUser' } }, () => {
   secondCallInScope();
 });
 ```
+
+### set
+
+Sets a variable for a given key within running context (started by runWith).
+If this is called outside of a running context, it will not store the value.
+
+#### Parameters
+
+-   `key` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** the key to store the variable by
+-   `value` **any** the value to store under the key for lookup later on.
+
+#### Examples
+
+```javascript
+const fastAls = require('fast-als');
+
+function callInScope() {
+  // override user
+  fastAls.set('user', { id: 'overwrittenUser'});
+}
+
+fastAls.runWith({ user: { id: 'someUser' } }, () => {
+  callInScope();
+});
+```
+
+```javascript
+const fastAls = require('fast-als');
+
+function callOutOfScope() {
+  // this never gets set
+  fastAls.set('user', { id: 'overwrittenUser'});
+}
+
+// calling this won't store the variable under the key
+callOutOfScope();
+```
+
+### get
+
+Gets a variable previously set within a running context (started by runWith).
+If this is called outside of a running context, it will not retrieve the value.
+
+#### Parameters
+
+-   `key` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** the key to retrieve the stored value
+
+#### Examples
+
+```javascript
+const fastAls = require('fast-als');
+
+function callInScope() {
+  // prints default user
+  console.log(fastAls.get('user'));
+}
+
+fastAls.runWith({ user: { id: 'someUser' } }, () => {
+  callInScope();
+});
+```
+
+```javascript
+const fastAls = require('fast-als');
+
+function callInScope() {
+  // prints default user
+  console.log(fastAls.get('user'));
+}
+
+fastAls.runWith({ user: { id: 'someUser' } }, () => {
+  callInScope();
+});
+
+// calling this will return undefined
+callInScope();
+```
+
+## fastAls~runWithCallback
+
+The code to be executed after the new asynchronous local storage context is created.
+
+Type: [Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)
