@@ -1,6 +1,6 @@
 # fast-als
 
-![fast-als Package](https://github.com/thorough-developer/fast-als/workflows/fast-als%20Package/badge.svg)
+![fast-als Publish](https://github.com/thorough-developer/fast-als/workflows/fastify-http-context%20Package/badge.svg)
 
 Asynchronous local storage implementation which provides an agnostic and performant approach no matter your version of node.
 
