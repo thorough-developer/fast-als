@@ -1,4 +1,4 @@
-name: fastify-http-context PR
+name: fast-als PR
 
 on:
   pull_request:
