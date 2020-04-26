@@ -1,7 +1,5 @@
 # fast-als
 
-![fast-als Publish](https://github.com/thorough-developer/fast-als/workflows/fastify-http-context%20Package/badge.svg)
-
 Asynchronous local storage implementation which provides an agnostic and performant approach no matter your version of node.
 
 This package is a wrapper around both the populer cls-hooked library as well as the Node v13+  AsyncLocalStorage.
