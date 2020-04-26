@@ -1,6 +1,6 @@
 {
   "name": "fast-als",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Asynchronous local storage implementation which provides an agnostic and performant approach no matter your version of node.",
   "main": "index.js",
   "files": [
