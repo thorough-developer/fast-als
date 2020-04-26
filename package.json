@@ -1,0 +1,68 @@
+{
+  "name": "fast-als",
+  "version": "1.0.0",
+  "description": "Asynchronous local storage implementation which provides an agnostic and performant approach no matter your version of node.",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "als-facade.js",
+    "cls-facade.js"
+  ],
+  "scripts": {
+    "test": "jest",
+    "document": "documentation readme index.js --section=API"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thorough-developer/fast-als.git"
+  },
+  "keywords": [
+    "async-local-storage",
+    "AsynchronousLocalStorage",
+    "thread-local",
+    "continuous-local-storage",
+    "express",
+    "koa",
+    "fastify",
+    "restify"
+  ],
+  "author": "Chris Washington <c.arnez.washington@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thorough-developer/fast-als/issues"
+  },
+  "homepage": "https://github.com/thorough-developer/fast-als#readme",
+  "devDependencies": {
+    "@hapi/hapi": "^19.1.1",
+    "documentation": "^12.3.0",
+    "eslint": "^6.8.0",
+    "express": "^4.17.1",
+    "fastify": "^2.13.1",
+    "husky": "^4.2.5",
+    "jest": "^25.4.0",
+    "lint-staged": "^10.1.7",
+    "prettier": "^2.0.5",
+    "restify": "^8.5.1"
+  },
+  "dependencies": {
+    "cls-hooked": "^4.2.2",
+    "eslint-plugin-jest": "^23.8.2",
+    "hyperid": "^2.0.3"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run document && lint-staged"
+    }
+  }
+}
