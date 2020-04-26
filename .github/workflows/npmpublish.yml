@@ -19,7 +19,7 @@ jobs:
       - run: npm test
       - run: npm run benchmark
   publish-npm:
-    needs: build
+    needs: update-docs
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

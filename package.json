@@ -15,7 +15,11 @@
     "async-local-storage",
     "AsynchronousLocalStorage",
     "thread-local",
-    "continuous-local-storage"
+    "continuous-local-storage",
+    "express",
+    "koa",
+    "fastify",
+    "restify"
   ],
   "author": "Chris Washington <c.arnez.washington@gmail.com>",
   "license": "MIT",
@@ -28,6 +32,7 @@
     "documentation": "^12.3.0",
     "express": "^4.17.1",
     "fastify": "^2.13.1",
+    "husky": "^4.2.5",
     "jest": "^25.4.0",
     "restify": "^8.5.1"
   },
@@ -44,6 +49,11 @@
         "lines": 100,
         "statements": 100
       }
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run document"
     }
   }
 }
